@@ -1,2 +1,2 @@
 # Void-Travelers
-Pintrest Redesign
+Pinterest Redesign
