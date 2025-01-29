@@ -1,2 +1,2 @@
 # Void-Travelers
-Software Engineering Project
+Pintrest Redesign
