@@ -1,4 +1,4 @@
-# Void-Travelers
+# CMP-280-20210 | Software Engineering Project
 Pinterest Reimagined
 
 **Table of Contents:**
