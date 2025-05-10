@@ -2,17 +2,11 @@
 Pinterest Reimagined
 
 **Table of Contents:**
-1. [**Finazlied Project Files**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#finazlied-project-files)
-2. [**Pinterest Reimagined**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#pinterest-reimagined)
-3. [**Features**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#features)
-4. [**Frequently Asked Questions**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#frequently-asked-questions)
-5. [**Help and Support**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#help-and-support)
-6. [**Sponsers**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#sponsers)
-# Finazlied Project Files
-/add links to this
-> - [**Project Plan**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#finazlied-project-files)
-> - [**System Requirements**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#finazlied-project-files)
-> - [**System Design**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#finazlied-project-files)
+1. [**Pinterest Reimagined**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#pinterest-reimagined)
+2. [**Features**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#features)
+3. [**Frequently Asked Questions**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#frequently-asked-questions)
+4. [**Help and Support**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#help-and-support)
+5. [**Sponsers**](https://github.com/Ryan-909/Void-Travelers/blob/main/README.md#sponsers)
 # Pinterest Reimagined
 > Welcome to Pinterest Reimagined! Pinterest has issues with the application version of it on phones. Pinterest Reimagined fixes these problems, increasing the user's experience and retention rates.
 ## Features
