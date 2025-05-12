@@ -1,0 +1,106 @@
++createBoard(boardID)
+	board = new board()
+	board.boardID = generateUniqueID(
+	board.name = name
+	board.description = description
+	board.createdDate = currentDate
+	board.isPublic = isPublic
+	board.owner =owner
+	board.pins = []
+	board.subBoards  []
+	board.parentBoards = []
+	DISPLAY "Board created"
+	RETURN board
+END
+
++editBoard(name, description, isPublic, owner)
+	board.name = name
+	board.description = description
+	board.isPublic = isPublic
+	board.owner = owner
+	DISPLAY "Board updated"
+END
+
++deleteBoard(boardID)
+	board = findBoardByID(boardID)
+
+	IF board exists THEN
+		DELETE board from system
+		DISPLAY "Board deleted"
+	ELSE
+		DISPLAY "Board not found"
+	END IF
+END
+
++addPin(pinID)
+	IF pinID NOT IN board.pins THEN
+		ADD pinID to board.pins
+		DISPLAY "Pin added to board"
+	ELSE
+		DISPLAY "Pin already exists on board"
+	END IF
+END
+
++removePin(pinID)
+    IF pinID IN board.pins THEN
+        REMOVE pinID FROM board.pins
+        DISPLAY "Pin removed from board"
+    ELSE
+        DISPLAY "Pin not found on board"
+    END IF
+END
+
++createSubBoard(name)
+    subBoard = new Board()
+    subBoard.boardID = generateUniqueID()
+    subBoard.name = name
+    subBoard.createdDate = currentDate
+    subBoard.owner = board.owner
+    ADD subBoard.boardID TO board.subBoards
+    DISPLAY "Sub-board created: " + name
+    RETURN subBoard
+END
+
++deleteSubBoard()
+    IF board.subBoards IS NOT EMPTY THEN
+        FOR EACH subBoardID IN board.subBoards
+            DELETE subBoardID from system
+        END FOR
+        board.subBoards = []
+        DISPLAY "All sub-boards deleted"
+    ELSE
+        DISPLAY "No sub-boards to delete"
+    END IF
+END
+
++movePinToSubBoard(pinID, subBoardID)
+    IF pinID IN board.pins THEN
+        subBoard = findBoardByID(subBoardID)
+        IF subBoard exists THEN
+            REMOVE pinID FROM board.pins
+            ADD pinID TO subBoard.pins
+            DISPLAY "Pin moved to sub-board"
+        ELSE
+            DISPLAY "Sub-board not found"
+        END IF
+    ELSE
+        DISPLAY "Pin not found in this board"
+    END IF
+END
+
++toggleVisibility()
+    board.isPublic = NOT board.isPublic
+    IF board.isPublic THEN
+        DISPLAY "Board is now public"
+    ELSE
+        DISPLAY "Board is now private"
+    END IF
+END
+
++download(format): File
+    file = new File()
+    file.name = board.name + "." + format
+    file.content = exportPins(board.pins)
+    DISPLAY "Board downloaded as " + format
+    RETURN file
+END

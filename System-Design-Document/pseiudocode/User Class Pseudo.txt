@@ -1,0 +1,115 @@
++createUser(userID, username, email, password): User
+    user = new User()
+    user.userID = generateUniqueID(userID)
+    user.username = username
+    user.email = email
+    user.password = password
+    user.dateJoined = currentDate
+    user.isActive = true
+    user.profile = createProfile()
+    user.boards = []
+    user.collections = []
+    user.savedPins = []
+    user.likedPins = []
+    user.badges = []
+    user.followers = []
+    user.following = []
+    RETURN user
+END
+
++deleteUser(userID)
+    user = findUserByID(userID)
+    
+    IF user exists THEN
+        DELETE user from system
+        DISPLAY "User deleted"
+    ELSE
+        DISPLAY "User not found"
+    END IF
+END
+
++followUser(userToFollow)
+    IF userToFollow.username NOT IN following THEN
+        ADD userToFollow.username TO following
+        ADD username TO userToFollow.followers
+        DISPLAY "Now following " + userToFollow.username
+    ELSE
+        DISPLAY "Already following this user"
+    END IF
+END
+
+
++unfollowUser(userToUnfollow)
+    IF userToUnfollow.username IN following THEN
+        REMOVE userToUnfollow.username FROM following
+        REMOVE username FROM userToUnfollow.followers
+        DISPLAY "Unfollowed " + userToUnfollow.username
+    ELSE
+        DISPLAY "You are not following this user"
+    END IF
+END
+
++savePin(pin)
+    IF pin.pinID NOT IN savedPins THEN
+        ADD pin.pinID TO savedPins
+        DISPLAY "Pin saved"
+    ELSE
+        DISPLAY "Pin already saved"
+    END IF
+END
+
++likePin(pin)
+    IF pin.pinID NOT IN likedPins THEN
+        ADD pin.pinID TO likedPins
+        DISPLAY "Pin liked"
+    ELSE
+        DISPLAY "You already liked this pin"
+    END IF
+END
+
++downloadPin(pin): File
+    IF pin exists THEN
+        file = download(pin.imageURL)
+        pin.isDownloaded = true
+        RETURN file
+    ELSE
+        DISPLAY "Pin not found"
+    END IF
+END
+
++downloadBoard(board): File
+    IF board exists THEN
+        file = exportPins(board.pins)
+        RETURN file
+    ELSE
+        DISPLAY "Board not found"
+    END IF
+END
+
++downloadCollection(collection): File
+    IF collection exists THEN
+        file = exportPins(collection.pins)
+        RETURN file
+    ELSE
+        DISPLAY "Collection not found"
+    END IF
+END
+
++updateProfile(newProfile)
+    IF newProfile exists THEN
+        profile = newProfile
+        DISPLAY "Profile updated"
+    ELSE
+        DISPLAY "Profile not found"
+    END IF
+END
+
++customizeBackground(background)
+    profile.backgroundImage = background
+    DISPLAY "Background updated"
+END
+
++viewRecommendations()
+    recommendations = generateBasedOn(savedPins, likedPins)
+    DISPLAY recommendations
+END

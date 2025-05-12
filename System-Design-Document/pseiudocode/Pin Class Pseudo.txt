@@ -1,0 +1,81 @@
++displayPin(pinID)
+    pin = findPinByID(pinID)
+    
+    IF pin exists THEN
+        DISPLAY pin.title
+        DISPLAY pin.imageURL
+        DISPLAY pin.description
+    ELSE
+        DISPLAY "Pin not found"
+    END IF
+END
+
++saveToBoard(boardID)
+    board = findBoardByID(boardID)
+
+    IF board exists THEN
+        ADD pin.pinID TO board.pins
+        DISPLAY "Pin saved to board"
+    ELSE
+        DISPLAY "Board not found"
+    END IF
+END
+
++removeFromBoard(boardID)
+    board = findBoardByID(boardID)
+
+    IF board exists AND pin.pinID IN board.pins THEN
+        REMOVE pin.pinID FROM board.pins
+        DISPLAY "Pin removed from board"
+    ELSE
+        DISPLAY "Pin not found in board"
+    END IF
+END
+
++download(pinID, isDownloaded)
+    pin = findPinByID(pinID)
+
+    IF pin exists THEN
+        IF NOT pin.isDownloaded THEN
+            DOWNLOAD pin.imageURL
+            pin.isDownloaded = true
+            DISPLAY "Pin downloaded"
+        ELSE
+            DISPLAY "Pin already downloaded"
+        END IF
+    ELSE
+        DISPLAY "Pin not found"
+    END IF
+END
++like(pinID)
+    pin = findPinByID(pinID)
+
+    IF pin exists THEN
+        INCREMENT pin.likeCount
+        DISPLAY "Pin liked"
+    ELSE
+        DISPLAY "Pin not found"
+    END IF
+END
+
++share(pinID)
+    pin = findPinByID(pinID)
+
+    IF pin exists THEN
+        GENERATE shareable link for pin
+        DISPLAY "Share link copied: " + pin.sourceURL
+    ELSE
+        DISPLAY "Pin not found"
+    END IF
+END
+
++report(pinID)
+    pin = findPinByID(pinID)
+
+    IF pin exists THEN
+        LOG report in moderation system
+        DISPLAY "Pin has been reported"
+    ELSE
+        DISPLAY "Pin not found"
+    END IF
+END

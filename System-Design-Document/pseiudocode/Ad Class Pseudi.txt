@@ -1,0 +1,41 @@
++toggleAdBorder()
+    IF hasBorder == true THEN
+        hasBorder = false
+        DISPLAY "Ad border removed"
+    ELSE
+        hasBorder = true
+        DISPLAY "Ad border added"
+    END IF
+END
+
++displayAd(pin, sponsorName, adLabel, hasBorder)
+    DISPLAY pin.imageURL
+    DISPLAY "Sponsored by: " + sponsorName
+    DISPLAY "Label: " + adLabel
+
+    IF hasBorder == true THEN
+        DISPLAY ad with highlighted border
+    ELSE
+        DISPLAY ad without border
+    END IF
+END
+
++showPopUp(popUpInfo)
+    DISPLAY popup message: popUpInfo
+    DISPLAY options: [Accept], [Cancel]
+END
+
++dismiss(isDismissed)
+    isDismissed = true
+    HIDE ad or popup from screen
+    DISPLAY "Ad dismissed"
+END
+
++redirectToSponsor(redirectURL)
+    IF redirectURL exists THEN
+        OPEN redirectURL in browser
+        DISPLAY "Redirecting to sponsor site"
+    ELSE
+        DISPLAY "Invalid URL"
+    END IF
+END

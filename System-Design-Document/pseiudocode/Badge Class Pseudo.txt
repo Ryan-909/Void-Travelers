@@ -1,0 +1,42 @@
++awardBadge(userID, dateEarned)
+    user = findUserByID(userID)
+
+    IF user exists THEN
+        badge.dateEarned = dateEarned
+        ADD badge.badgeID TO user.badges
+        DISPLAY "Badge awarded to user"
+    ELSE
+        DISPLAY "User not found"
+    END IF
+END
+
++updateBadge(newName, newDescription, newIcon, newType, newDateEarned)
+    badge.name = newName
+    badge.description = newDescription
+    badge.icon = newIcon
+    badge.type = newType
+    badge.dateEarned = newDateEarned
+    DISPLAY "Badge updated"
+END
+
++displayBadge(name, icon, dateEarned)
+    DISPLAY "Badge Name: " + name
+    DISPLAY icon
+    DISPLAY "Earned on: " + dateEarned
+END
+
++isMilestone(type)
+    IF type == "milestone" THEN
+        RETURN true
+    ELSE
+        RETURN false
+    END IF
+END
+
++isCustom(type)
+    IF type == "custom" THEN
+        RETURN true
+    ELSE
+        RETURN false
+    END IF
+END

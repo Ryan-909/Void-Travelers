@@ -1,0 +1,91 @@
++createProfile(profileID, profileOwner)
+	profile = new Profile()
+	profile.profileID = generateUniqueID(profileID)
+	profile.backgroundImage = "default.jpg"
+	profile.bio = ""
+	profile.profileOwner = currentUser.username
+	profile.pinnedUsers = []
+	profile.badges = []
+	DISPLAY "Profile created for " + profile.profileOwner
+	RETURN profile
+END
+
++deleteProfile(profileID,profileOwner)
+	profile = findProfileByID(profileID)
+
+	IF profile exists THEN
+		DISPLAY profile
+		DISPLAY "Profile deleted successfully"
+	ELSE
+		DISPLAY "Profile not found"
+	END IF
+END
+
++updateProfile(bio, backgroundImage, badges)
+	profile = findProfileByID(profileID)
+
+	IF profile exists THEN
+		INPUT newbio
+		INPUT newBackground
+		INPUT badges
+		profile.bio = newBio
+		profile.backgroundImage = newBackground
+	ELSE
+		DISPLAY "Profile not found"
+	END IF
+END
+
++setBackground(backgroundImage)
+	profile.backgroundImage = backgroundImage
+	DISPLAY "Background image updated to " + background.Image
+END
+
++addBio(bio)
+	profile.bio = bio
+	DISPLAY "Bio added: ") + bio
+END
+
++updateBio(bio)
+	profile.bio = newBio
+	DISPLAY "Bio updated to: " + newBio
+END
+
++removeBio(bio)
+	IF profile.bio == bio THEN
+		profile.bio + ""
+		DISPLAY "Bio removed"
+	ELSE
+		DISPLAY "Bio does not match current profile bio"
+	END IF
+END
+
++addPinnedUser(userID,username)
+	IF username NOT IN profile.pinnedUsers THEN
+		ADD username to profile.pinnedUsers
+		DISPLAY username +" pinned to profile"
+	END IF
+END
+
++removePinnedUser(userID, username)
+	IF username IN profile.pinnedUsers THEN
+		REMOVE username FROM profile.pinnedUsers
+		DISPLAY username " is removed form your profile"
+	END IF
+END
+
++addBadge(badgeID)
+	IF badgeID IN profile.badgeID THEN
+		REMOVE badgeID from profile.badges
+		DISPLAY "Badge removed"
+	END IF
+END
+
++viewProfile(profileID)
+	profile = findProfileByID(profileID)
+
+	IF profile exists THEN
+		DISPLAY profile
+	ELSE
+		DISPLAY "Profile not found"
+	END IF
+END
